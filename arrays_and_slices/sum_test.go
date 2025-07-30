@@ -2,7 +2,7 @@ package arraysandslices
 
 import "testing"
 
-func testSum(t *testing.T) {
+func TestSum(t *testing.T) {
 	numbers := [5]int{1, 2, 3, 4, 5}
 
 	got := Sum(numbers)
