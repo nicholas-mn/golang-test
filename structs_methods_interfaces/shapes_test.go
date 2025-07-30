@@ -18,18 +18,21 @@ type Shape interface {
 
 func TestArea(t *testing.T) {
 	areaTest := []struct {
+		name  string
 		shape Shape
 		want  float64
 	}{
-		{shape: Rectangle{Width: 100.0, Height: 5.0}, want: 500},
-		{shape: Circle{Radius: 10}, want: 314.1592653589793},
-		{shape: Triangle{Base: 12, Height: 6}, want: 36.0},
+		{name: "Rectangle", shape: Rectangle{Width: 100.0, Height: 5.0}, want: 500},
+		{name: "Circle", shape: Circle{Radius: 10}, want: 314.1592653589793},
+		{name: "Triangle", shape: Triangle{Base: 12, Height: 6}, want: 36.0},
 	}
 
 	for _, tt := range areaTest {
-		got := tt.shape.Area()
-		if got != tt.want {
-			t.Errorf("got %g want %g", got, tt.want)
-		}
+		t.Run(tt.name, func(t *testing.T) {
+			got := tt.shape.Area()
+			if got != tt.want {
+				t.Errorf("%#v got %g want %g", tt.shape, got, tt.want)
+			}
+		})
 	}
 }
