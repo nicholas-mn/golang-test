@@ -7,6 +7,7 @@ import (
 
 func Reverse(origin string) (reversedString string) {
 	reversedString = origin
+
 	if !hasParantheses(reversedString) {
 		return reversedString
 	}
@@ -29,15 +30,12 @@ func splitReverseAndRemoveOuterParantheses(str string) string {
 	}
 
 	oldStr := toBeReversed
-
 	toBeReversed = reverseString(toBeReversed)
 
 	// remove outer reversed parentheses
-	splitStr := strings.Split(toBeReversed, "")
-	splitStr = splitStr[1 : len(splitStr)-1]
-	toString := strings.Join(splitStr, "")
+	toBeReversed = toBeReversed[1 : len(toBeReversed)-1]
 
-	outputStr := strings.ReplaceAll(str, oldStr, toString)
+	outputStr := strings.ReplaceAll(str, oldStr, toBeReversed)
 
 	return outputStr
 }
